@@ -16,7 +16,7 @@ describe('Albums.vue', () => {
       albums: []
     }
     getters = {
-      allAlbums: () => [],
+      allAlbums: () => state.albums,
     }
     actions = {
       fetchAlbums: jest.fn()
@@ -38,8 +38,8 @@ describe('Albums.vue', () => {
     const wrapper = shallowMount(Albums, { store, localVue });
     expect(wrapper.find('.container').exists()).toBe(true);
   });
-  it('Shouldn`t have div.card when allAlbums is empty', () => {
+  it('Should have router.card', () => {
     const wrapper = shallowMount(Albums, { store, localVue });
-    expect(wrapper.find('.card').exists()).toBe(false);
+    expect(wrapper.findAll('.card').length).toBe(getters.allAlbums.length);
   });
 });
