@@ -3,7 +3,18 @@
     <router-view/>
   </div>
 </template>
-
+<script>
+  import { mapActions } from 'vuex'
+  export default {
+    name: "Albums",
+    methods: {
+      ...mapActions(['fetchAlbums'])
+    },
+    created() {
+      this.fetchAlbums()
+    }
+  }
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

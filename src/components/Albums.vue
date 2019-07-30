@@ -2,25 +2,19 @@
   <div>
     <h1>Albums list</h1>
     <div class="container">
-      <div v-for="album in allAlbums" :key="album.id" class="card">
+      <router-link :to="{ name: 'album', params: { albumId: album.id }}" v-for="album in allAlbums" :key="album.id" class="card">
         {{ album.title }}
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: "Albums",
   computed: mapGetters(['allAlbums']),
-  methods: {
-    ...mapActions(['fetchAlbums'])
-  },
-  created() {
-    this.fetchAlbums()
-  }
 }
 </script>
 
@@ -31,13 +25,16 @@ export default {
     width: 100%;
     flex-wrap: wrap;
   }
+  a {
+    text-decoration: none;
+    color: white;
+  }
   .card {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 150px;
     width: 31%;
-    justify-content: space-around;
     background: #42b983;
     box-shadow: 0px 0px 10px 2px #2c3e50;
     margin: 15px 0px;
